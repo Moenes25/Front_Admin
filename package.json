@@ -12,5 +12,9 @@
   },
   "author": "",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/baracio/admin_front#readme"
+  "homepage": "https://bitbucket.org/baracio/admin_front#readme",
+  "dependencies": {
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.3.2"
+  }
 }
