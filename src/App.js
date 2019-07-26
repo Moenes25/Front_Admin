@@ -22,13 +22,7 @@ function App() {
                  
                   <div>
                    
-                          return (
-                            <Switch>
-                           
-                             
-                          
-                            </Switch>
-                          );
+                       
                         }}
                  
                   </div>

@@ -62,14 +62,14 @@ class Login extends React.Component {
           <Grid.Row centered columns={4}>
             <Grid.Column centered textAlign="center" width="50">
              
-                <img src="/images/barac.jpg" alt="barac" width="70" height="70" />
+                <img src="/images/barac.png" alt="barac" width="70" height="70" />
             
               <Form>
                 <Form.Input icon="user" id="email" iconPosition="right" placeholder="E-mail" onChange={this.handleChange} value={email} />
                 <Form.Input icon="lock" id="password" iconPosition="right" placeholder="Mot de passe" type="password" onChange={this.handleChange} value={password} />
                
                 <p>{errorInput}</p>
-                <Button secondary fluid onClick={this.onSubmit}>Login</Button>
+                <Button className="ui red " fluid onClick={this.onSubmit}>Login</Button>
               </Form>
             </Grid.Column>
           </Grid.Row>
