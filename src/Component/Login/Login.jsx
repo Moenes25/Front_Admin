@@ -1,14 +1,16 @@
 
 import React from 'react';
-
-
-
-
-
+import { NavLink, withRouter } from 'react-router-dom';
+import { get } from 'lodash';
+import { compose, graphql } from 'react-apollo';
+import PropTypes from 'prop-types';
 import { Grid, Form, Button } from 'semantic-ui-react';
 
+import withStyleLogin from './WithStyleLogin';
+import loginMutation from '../../Graphql/Login/Login';
+import updateUsersStates  from '../../Graphql/Login/updateUsersStates';
 
-import WithStyleLogin from './WithStyleLogin';
+
 
 
 class Login extends React.Component {
@@ -21,20 +23,20 @@ class Login extends React.Component {
     };
   }
 
-
   onSubmit = async () => {
     const { email, password } = this.state;
-    const { history, login, updateUsersStates } = this.props;
+    const { history,login } = this.props;
     const result = await login(email, password);
-   
+    const token = get(result, 'data.login.jwt', '');
 
     if (!result.data.login.errors) {
-     const typeUser = result.data.login.user.type;
+      localStorage.setItem('jwt', token);
+      const typeUser = result.data.login.type;
       await updateUsersStates(typeUser);
       if (typeUser === 'admin') {
-        history.push('/app/Home');
-      } else if (typeUser === 'rh') {
-        history.push('/app/planetes-list');
+        history.pushState('/Home');
+      } else if (typeUser === 'false') {
+        history.push('/login');
       // eslint-disable-next-line no-empty
       } else if (typeUser === 'Recuiteur') {
 
@@ -61,15 +63,14 @@ class Login extends React.Component {
         <Grid centered columns={1} className="Login">
           <Grid.Row centered columns={4}>
             <Grid.Column centered textAlign="center" width="50">
-             
-                <img src="/images/barac.png" alt="barac" width="70" height="70" />
-            
+              <NavLink to="/register">
+                <img src="/images/oyez.jpg" alt="oyez" width="70" height="70" />
+              </NavLink>
               <Form>
                 <Form.Input icon="user" id="email" iconPosition="right" placeholder="E-mail" onChange={this.handleChange} value={email} />
                 <Form.Input icon="lock" id="password" iconPosition="right" placeholder="Mot de passe" type="password" onChange={this.handleChange} value={password} />
-               
                 <p>{errorInput}</p>
-                <Button className="ui red " fluid onClick={this.onSubmit}>Login</Button>
+                <Button secondary fluid onClick={this.onSubmit}>Login</Button>
               </Form>
             </Grid.Column>
           </Grid.Row>
@@ -79,6 +80,18 @@ class Login extends React.Component {
   }
 }
 
+Login.propTypes = {
+  history: PropTypes.array,
+};
 
-
-export default WithStyleLogin (Login);
+export default compose(graphql(loginMutation, {
+  props: ({ mutate }) => ({
+    login: (email, password) => mutate({
+      variables: {
+        email,
+        password,
+      },
+    }),
+  }),
+}),
+withStyleLogin, withRouter)(Login);
