@@ -8,7 +8,7 @@ import { Grid, Form, Button } from 'semantic-ui-react';
 
 import withStyleLogin from './WithStyleLogin';
 import loginMutation from '../../Graphql/Login/Login';
-import updateUsersStates  from '../../Graphql/Login/updateUsersStates';
+// import updateUsersStates  from '../../Graphql/Login/updateUsersStates';
 
 
 
@@ -31,23 +31,19 @@ class Login extends React.Component {
 
     if (!result.data.login.errors) {
       localStorage.setItem('jwt', token);
-      const typeUser = result.data.login.type;
-      await updateUsersStates(typeUser);
+      const typeUser = await result.data.login.type;
+      console.log('error in onsubmit')
       if (typeUser === 'admin') {
-        history.pushState('/Home');
-      } else if (typeUser === 'false') {
-        history.push('/login');
-      // eslint-disable-next-line no-empty
-      } else if (typeUser === 'Recuiteur') {
-
-      } else {
-        history.push('/');
-      }
+        history.push('/Home')
+       console.log('welcome to hom')
+      } 
     } else {
+ 
       this.setState({ errorInput: 'login ou mot de passe incorrect' });
-    }
+    } console.log("you submit it")
   }
-
+  
+  
   handleChange = (event) => {
     this.setState({
       [event.target.id]: event.target.value,
@@ -70,7 +66,8 @@ class Login extends React.Component {
                 <Form.Input icon="user" id="email" iconPosition="right" placeholder="E-mail" onChange={this.handleChange} value={email} />
                 <Form.Input icon="lock" id="password" iconPosition="right" placeholder="Mot de passe" type="password" onChange={this.handleChange} value={password} />
                 <p>{errorInput}</p>
-                <Button secondary fluid onClick={this.onSubmit}>Login</Button>
+                <Button className="ui negative button" secondary fluid onClick={this.onSubmit}>Login</Button>
+
               </Form>
             </Grid.Column>
           </Grid.Row>

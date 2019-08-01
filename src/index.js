@@ -8,10 +8,10 @@ import { setContext } from 'apollo-link-context';
 import { ApolloLink } from 'apollo-link';
 import { ApolloProvider } from 'react-apollo';
 import App from './App';
-import Login from './Component/Login/Login'
+
 
 const httpLink = new HttpLink({
-  uri: 'http://localhost:4001/graphql',
+  uri: 'http://localhost:5000/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {

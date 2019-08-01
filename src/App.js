@@ -2,6 +2,8 @@
 import React, { Fragment } from 'react';
 
 import Login from './Component/Login/Login';
+import Home from './Component/Home/Home';
+
 
 
 
@@ -15,6 +17,8 @@ function App() {
         <Fragment>
           <Switch>
             <Route path="/login" component={Login} />
+            <Route path="/Home" component={Home} />
+
             <Route
               path="/app"
               render={() => (
