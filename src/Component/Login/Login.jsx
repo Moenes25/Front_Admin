@@ -66,8 +66,12 @@ class Login extends React.Component {
                 <Form.Input icon="user" id="email" iconPosition="right" placeholder="E-mail" onChange={this.handleChange} value={email} />
                 <Form.Input icon="lock" id="password" iconPosition="right" placeholder="Mot de passe" type="password" onChange={this.handleChange} value={password} />
                 <p>{errorInput}</p>
+<<<<<<< HEAD
                 <Button className="ui negative button" secondary fluid onClick={this.onSubmit}>Login</Button>
 
+=======
+                <Button className="ui negative button"  onClick={this.onSubmit}>Login</Button>
+>>>>>>> c3d64df2dca7326fdbfd98259304a351fb69ffd1
               </Form>
             </Grid.Column>
           </Grid.Row>
