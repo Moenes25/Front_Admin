@@ -1,3 +1,7 @@
+import 'react-app-polyfill/ie9'; // For IE 9-11 support
+import 'react-app-polyfill/stable';
+// import 'react-app-polyfill/ie11'; // For IE 11 support
+import './polyfill'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ApolloClient } from 'apollo-client';
@@ -7,7 +11,10 @@ import { HttpLink } from 'apollo-link-http';
 import { setContext } from 'apollo-link-context';
 import { ApolloLink } from 'apollo-link';
 import { ApolloProvider } from 'react-apollo';
+
+import './index.css';
 import App from './App';
+// import * as serviceWorker from './serviceWorker';
 
 
 const httpLink = new HttpLink({
