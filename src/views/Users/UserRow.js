@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Badge, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import { ApolloProvider } from 'react-apollo';
 
 
 import UpAndDelete from "../semantic-ui/Button/button"
@@ -10,24 +11,8 @@ import UpAndDelete from "../semantic-ui/Button/button"
 
 import usersData from './UsersData'
 
-class UserRow extends Component {
 
-  render() {
-    const { name, id, type } = this.props
-    const userLink = `/users/${id}`
-  
-    return (
-    <tr key={id.toString()}>
-      <th scope="row"><a href={userLink}>{id}</a></th>
-      <td><a href={userLink}>{name}</a></td>
-      <td>{type}</td>
-      <td><UpAndDelete userId={id}/></td>
-    </tr>)
 
-    
-   
-  }
-}
 const GET_ALL_ADMIN = gql`
         {
         FindAllAdmin{
@@ -50,7 +35,7 @@ class Users extends Component {
     return (
       <div className="animated fadeIn">
         <Row>
-          <Col sm="12" md={{ size: 6, offset: 3 }}>
+          <Col xl={6}>
             <Card>
               <CardHeader>
                 <i className="fa fa-align-justify"></i> Users <small className="text-muted">example</small>
@@ -72,11 +57,12 @@ class Users extends Component {
                         console.log(data)
                         if (loading) return "Loading...";
                         if (error) return error;
-                       return data.FindAllAdmin.map(({ username, _id, type}) =>
-                        <UserRow key={_id} id={_id} name={username} type={type}/>)
+                      return data.FindAllAdmin.map(( {_id, username, type}) =>
+                        <UserRow key={_id} id={_id} name={username} type={type}/>
+                       )
                       }
                     }
-             </Query>
+                    </Query>
                     
                   </tbody>
                 </Table>

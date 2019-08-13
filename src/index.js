@@ -14,8 +14,13 @@ import { ApolloProvider } from 'react-apollo';
 
 import './index.css';
 import App from './App';
-// import * as serviceWorker from './serviceWorker';
+import Users from "./views/Users/Users"
 
+// import Users from "./views/Users/Users"
+
+
+// import * as serviceWorker from './serviceWorker';
+           
 
 const httpLink = new HttpLink({
   uri: 'http://localhost:5000/graphql',
@@ -65,4 +70,6 @@ const client = new ApolloClient({
 
 
 
-ReactDOM.render(<ApolloProvider client={client}><App /></ApolloProvider>, document.getElementById('root'));
+ReactDOM.render(<ApolloProvider client={client}>
+  <App /> 
+</ApolloProvider>, document.getElementById('root'));

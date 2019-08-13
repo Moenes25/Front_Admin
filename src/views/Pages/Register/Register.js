@@ -35,7 +35,7 @@ class Register extends Component {
                       <Card className="mx-4">
                         <CardBody className="p-4">
                           <Form onSubmit={e => {
-                              e.preventDefault();
+                                    window.location.reload();
                                     createAdmin({ variables: { password, username, email , type} });
                            }}>
                             <h1>Register</h1>
@@ -53,6 +53,7 @@ class Register extends Component {
                                 type="text"
                                 placeholder="Username" 
                                 autoComplete="username"
+                                required
                               />
                             </InputGroup>
                             <InputGroup className="mb-3">
@@ -66,6 +67,7 @@ class Register extends Component {
                                 type="email"
                                 placeholder="Email" 
                                 autoComplete="email"
+                                required
                               />
                             </InputGroup>
                             <InputGroup className="mb-3">
@@ -79,14 +81,15 @@ class Register extends Component {
                                 value={password}
                                 onChange={e => this.setState({ password: e.target.value })}
                                 type="password"
-                                placeholder="Password"
-                                autoComplete="new-password"
+                                placeholder="**********"
+                                autoComplete="new-password" 
+                                required
                               />
                             </InputGroup>
                             <InputGroup className="mb-4">
                               <InputGroupAddon addonType="prepend">
                                 <InputGroupText>
-                                  <i className="icon-lock"></i>
+                                  <i className="icon-people"></i>
                                 </InputGroupText>
                               </InputGroupAddon>
                               <Input
@@ -96,12 +99,12 @@ class Register extends Component {
                                 type="text"
                                 placeholder="Role"
                                 autoComplete="Admin" 
+                                required
                               />
                             </InputGroup>
                             <Button color="success" block>Create Account</Button>
                           </Form>
                         </CardBody>
-                       
                       </Card>
                     </Col>
                   </Row>

@@ -1,5 +1,5 @@
 import React from 'react';
-
+    
 const Breadcrumbs = React.lazy(() => import('./views/Base/Breadcrumbs'));
 const Cards = React.lazy(() => import('./views/Base/Cards'));
 const Carousels = React.lazy(() => import('./views/Base/Carousels'));
@@ -82,3 +82,4 @@ const routes = [
 ];
 
 export default routes;
+      
