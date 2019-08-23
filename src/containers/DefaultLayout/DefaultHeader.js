@@ -37,6 +37,9 @@ class DefaultHeader extends Component {
           <NavItem className="px-3">
             <Link to="/users" className="nav-link">Users</Link>
           </NavItem>
+          <NavItem className="px-3">
+            <Link to="/manage" className="nav-link">Company Manage</Link>
+          </NavItem>
         </Nav>
         <Nav className="ml-auto" navbar>
           <NavItem className="d-md-down-none">

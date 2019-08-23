@@ -6,7 +6,7 @@ import gql from "graphql-tag";
 import { ApolloProvider } from 'react-apollo';
 
 
-import UpAndDelete from "../semantic-ui/Button/button"
+import UpAndDelete from "../Client_Manage/Button/button"
 
 
 import usersData from './UsersData'
